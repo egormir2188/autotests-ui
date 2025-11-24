@@ -7,13 +7,53 @@
     .h2-text {
       color: red
     }
+
+    h6 {
+      font-size: 20px
+    }
+
+    .h6-text {
+      color: yellow
+    }
+
+    #h1-text {
+      font-size: 50px
+    }
+
+    div.python > a {
+      color: green
+    }
+
+    ul li {
+      color: green
+    }
+
+    input[type="text"] {
+      background-color: blue
+    }
+
+    input[type="text"]:hover {
+      background-color: white
+    }
+
+    a:hover {
+      color: red
+    }
+
+    li::marker {
+      color: red
+    }
+
+    ul > li:nth-child(2) {
+      color: blue
+    }
   </style>
 </head>
 <body>
-<div>
+<div class="python">
   <h1 id="h1-text">H1 text</h1>
   <h2 class="h2-text">H2 text</h2>
-  <h6 class="h2-text">H6 text</h6>
+  <h6 class="h2-text h6-text">H6 text</h6>
   <p>Playwright supports all modern rendering engines including <span style="color: green">Chromium, WebKit, and Firefox</span>.</p>
   <a href="https://www.python.org/" target="_blank">Python</a>
   <img src="https://playwright.dev/img/logos/Browsers.png" style="width: 250px" alt="browsers.png">
@@ -51,6 +91,22 @@
       Table
     </tbody>
   </table>
+  <div class="nth">
+    <p>1</p>
+    <p>2</p>
+    <h6>3</h6>
+    <h5>4</h5>
+    <p>5</p>
+  </div>
+</div>
+<div class="javascript">
+  <a href="https://www.javascript.com/" target="_blank">JavaScript</a>
+  <h2 class="h2-text">H2 text</h2>
+  <ul>
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+  </ul>
 </div>
 </body>
 </html>
