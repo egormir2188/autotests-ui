@@ -50,5 +50,3 @@ def test_empty_courses_list():
         course_empty_list_description = page.get_by_test_id('courses-list-empty-view-description-text')
         expect(course_empty_list_description).to_be_visible()
         expect(course_empty_list_description).to_have_text('Results from the load test pipeline will be displayed here')
-
-        # page.wait_for_timeout(3000)
