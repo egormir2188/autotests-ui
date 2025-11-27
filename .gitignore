@@ -1,0 +1,9 @@
+# pycharm
+.idea
+
+# python
+.venv
+__pycache__
+
+# browser state
+/browser-state.json
