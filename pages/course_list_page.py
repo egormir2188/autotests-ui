@@ -41,7 +41,7 @@ class CoursesListPage(BasePage):
             'Results from the load test pipeline will be displayed here'
         )
 
-    def check_create_course_button_visible(self):
+    def check_visible_create_course_button(self):
         expect(self.create_course_button).to_be_visible()
 
     def click_create_course_button(self):
@@ -64,7 +64,7 @@ class CoursesListPage(BasePage):
         expect(self.course_max_text.nth(index)).to_have_text(f'Max score: {max_score}')
 
         expect(self.course_min_text.nth(index)).to_be_visible()
-        expect(self.course_min_text.nth(index)).to_have_text(f'Max score: {min_score}')
+        expect(self.course_min_text.nth(index)).to_have_text(f'Min score: {min_score}')
 
         expect(self.course_estimated_time.nth(index)).to_be_visible()
         expect(self.course_estimated_time.nth(index)).to_have_text(f'Estimated time: {estimated_time}')

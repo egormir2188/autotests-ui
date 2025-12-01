@@ -2,6 +2,9 @@ import pytest
 
 from playwright.sync_api import expect, Page
 
+from pages.create_course_page import CreateCoursePage
+from pages.course_list_page import CoursesListPage
+
 
 @pytest.mark.regression
 @pytest.mark.courses
@@ -22,3 +25,62 @@ def test_empty_courses_list(chromium_page_with_state: Page):
     course_empty_list_description = chromium_page_with_state.get_by_test_id('courses-list-empty-view-description-text')
     expect(course_empty_list_description).to_be_visible()
     expect(course_empty_list_description).to_have_text('Results from the load test pipeline will be displayed here')
+
+
+@pytest.mark.regression
+@pytest.mark.courses
+@pytest.mark.parametrize(
+    'title, estimated_time, description, max_score, min_score',
+    [
+        ('Playwright', '2 weeks', 'Playwright', '100', '10')
+    ]
+)
+def test_create_course(
+        create_course_page: CreateCoursePage,
+        courses_list_page: CoursesListPage,
+        title: str,
+        estimated_time: str,
+        description: str,
+        max_score: str,
+        min_score: str
+):
+    create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
+
+    create_course_page.check_visible_create_course_title()
+    create_course_page.check_disabled_create_course_button()
+    create_course_page.check_visible_image_preview_empty_view()
+    create_course_page.check_visible_image_upload_view(is_image_upload=False)
+
+    create_course_page.check_visible_create_course_form(
+        title='',
+        estimated_time='',
+        description='',
+        max_score='0',
+        min_score='0'
+    )
+
+    create_course_page.check_visible_exercises_title()
+    create_course_page.check_visible_create_exercise_button()
+    create_course_page.check_visible_exercises_empty_view()
+
+    create_course_page.upload_preview_file('./testdata/files/img.png')
+    create_course_page.check_visible_image_upload_view(is_image_upload=True)
+
+    create_course_page.fill_create_course_form(
+        title=title,
+        estimated_time=estimated_time,
+        description=description,
+        max_score=max_score,
+        min_score=min_score
+    )
+    create_course_page.click_create_course_button()
+
+    courses_list_page.check_visible_courses_title()
+    courses_list_page.check_visible_create_course_button()
+    courses_list_page.check_visible_course_card(
+        index=0,
+        title=title,
+        estimated_time=estimated_time,
+        max_score=max_score,
+        min_score=min_score
+    )

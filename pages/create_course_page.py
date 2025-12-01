@@ -31,7 +31,7 @@ class CreateCoursePage(BasePage):
             'create-course-preview-image-upload-widget-info-description-text'
         )
         self.preview_image_upload_button = page.get_by_test_id(
-            'create-course-preview-image-upload-widget-upload-button'
+            'create-course-preview-image-upload-widget-input'
         )
         self.preview_image_remove_button = page.get_by_test_id(
             'create-course-preview-image-upload-widget-remove-button'
@@ -65,7 +65,7 @@ class CreateCoursePage(BasePage):
     def check_visible_create_course_button(self):
         expect(self.create_course_button).to_be_visible()
 
-    def click_visible_create_course_button(self):
+    def click_create_course_button(self):
         self.create_course_button.click()
 
     def check_disabled_create_course_button(self):
@@ -121,10 +121,10 @@ class CreateCoursePage(BasePage):
         expect(self.create_course_description_textarea).to_have_text(description)
 
         expect(self.create_course_max_score_input).to_be_visible()
-        expect(self.create_course_max_score_input).to_have_text(max_score)
+        expect(self.create_course_max_score_input).to_have_value(max_score)
 
         expect(self.create_course_min_score_input).to_be_visible()
-        expect(self.create_course_min_score_input).to_have_text(min_score)
+        expect(self.create_course_min_score_input).to_have_value(min_score)
 
     def fill_create_course_form(
             self,
@@ -159,7 +159,7 @@ class CreateCoursePage(BasePage):
     def click_create_exercise_button(self):
         self.create_exercise_button.click()
 
-    def check_visible_empty_exercises_form(self):
+    def check_visible_exercises_empty_view(self):
         expect(self.exercises_empty_view_icon).to_be_visible()
 
         expect(self.exercises_empty_view_title).to_be_visible()
