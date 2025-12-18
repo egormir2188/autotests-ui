@@ -29,20 +29,9 @@ def test_empty_courses_list(chromium_page_with_state: Page):
 
 @pytest.mark.regression
 @pytest.mark.courses
-@pytest.mark.parametrize(
-    'title, estimated_time, description, max_score, min_score',
-    [
-        ('Playwright', '2 weeks', 'Playwright', '100', '10')
-    ]
-)
 def test_create_course(
         create_course_page: CreateCoursePage,
         courses_list_page: CoursesListPage,
-        title: str,
-        estimated_time: str,
-        description: str,
-        max_score: str,
-        min_score: str
 ):
     create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
 
@@ -67,11 +56,11 @@ def test_create_course(
     create_course_page.check_visible_image_upload_view(is_image_upload=True)
 
     create_course_page.fill_create_course_form(
-        title=title,
-        estimated_time=estimated_time,
-        description=description,
-        max_score=max_score,
-        min_score=min_score
+        title='Playwright',
+        estimated_time='2 weeks',
+        description='Playwright',
+        max_score='100',
+        min_score='10'
     )
     create_course_page.click_create_course_button()
 
@@ -79,8 +68,8 @@ def test_create_course(
     courses_list_page.check_visible_create_course_button()
     courses_list_page.check_visible_course_card(
         index=0,
-        title=title,
-        estimated_time=estimated_time,
-        max_score=max_score,
-        min_score=min_score
+        title='Playwright',
+        estimated_time='2 weeks',
+        max_score='100',
+        min_score='10'
     )
