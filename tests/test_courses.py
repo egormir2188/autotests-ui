@@ -22,7 +22,7 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
 
     create_course_page.create_course_toolbar.check_visible(is_create_course_disabled=True)
-    create_course_page.image_upload_widget.check_visible()
+    create_course_page.image_upload_widget.check_visible(identifier='create-course-preview')
     create_course_page.create_course_form.check_visible(
         title='', estimated_time='', description='', max_score='0', min_score='0'
     )
@@ -30,8 +30,10 @@ def test_create_course(create_course_page: CreateCoursePage, courses_list_page: 
     create_course_page.create_exercise_toolbar.check_visible()
     create_course_page.check_visible_exercises_empty_view()
 
-    create_course_page.image_upload_widget.upload_preview_file('./testdata/files/img.png')
-    create_course_page.image_upload_widget.check_visible(is_image_upload=True)
+    create_course_page.image_upload_widget.upload_preview_file(
+        './testdata/files/img.png', identifier='create-course-preview'
+    )
+    create_course_page.image_upload_widget.check_visible(is_image_upload=True, identifier='create-course-preview')
     create_course_page.create_course_form.fill(
         title='Playwright', estimated_time='2 weeks', description='Playwright', max_score='100', min_score='10'
     )
