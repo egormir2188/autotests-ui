@@ -7,3 +7,7 @@ __pycache__
 
 # browser state
 /browser-state.json
+
+# allure report
+/allure-results/
+/allure-report/
