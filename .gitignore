@@ -1,5 +1,6 @@
 # pycharm
 .idea
+.gitignore
 
 # python
 .venv
@@ -11,3 +12,4 @@ __pycache__
 # allure report
 /allure-results/
 /allure-report/
+/tracing/
